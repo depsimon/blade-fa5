@@ -50,7 +50,7 @@ First, make sure to include the spritesheets that you'll use in your template wi
     <body>
         <!-- ... -->
 
-        {{ fa5_spritesheets('far', 'fas', 'fal', 'fab') }}
+        {{ fa5_spritesheets('far', 'fas', 'fab') }}
     </body>
 </html>
 ```
