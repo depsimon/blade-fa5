@@ -19,6 +19,7 @@
         }
     ],
     "require": {
+        "php": "^7.0",
         "illuminate/support": "^5.3",
         "illuminate/filesystem": "^5.3"
     },
