@@ -1,0 +1,43 @@
+{
+    "name": "depsimon/blade-fa5",
+    "description": "Easily inline Font Awesome 5 icons in your Blade templates",
+    "keywords": [
+        "depsimon",
+        "font-awesome",
+        "fa",
+        "svg",
+        "blade"
+    ],
+    "homepage": "https://github.com/depsimon/blade-fa5",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simon Depelchin",
+            "email": "simon@webartisan.be",
+            "homepage": "https://webartisan.be",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^5.3",
+        "illuminate/filesystem": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Depsimon\\BladeFa5\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Depsimon\\BladeFa5\\BladeFa5ServiceProvider"
+            ]
+        }
+    }
+}
