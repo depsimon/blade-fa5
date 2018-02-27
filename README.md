@@ -19,6 +19,10 @@ Publish the Blade Font Awesome 5 config file:
 php artisan vendor:publish --provider="Depsimon\BladeFa5\BladeFa5ServiceProvider"
 ```
 
+Go to https://fontawesome.com/ and download the latest version (Free or Pro). Unzip the package and go to `fontawesome-free-5.0.7/advanced-options/svg-sprites`.
+
+Copy all the files from there to you `resources/assets/svg` directory.
+
 ## Configuration
 
 Inside `config/blade-fa5.php`, you can specify the spritesheets path, the default weight and the default classes for icons.
