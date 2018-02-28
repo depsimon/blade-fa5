@@ -2,7 +2,6 @@
 
 namespace Depsimon\BladeFa5;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
@@ -10,9 +9,9 @@ use Illuminate\Support\HtmlString;
 class Fa5Factory
 {
 
-    private $files;
     private $config = [
-        'weight' => 'far'
+        'weight' => 'far',
+        'spritesheets_url' => 'svg/'
     ];
 
     const WEIGHT_SPRITESHEETS = [
@@ -22,10 +21,9 @@ class Fa5Factory
         'fab' => 'fa-brands.svg'
     ];
 
-    public function __construct($config = [], $filesystem = null)
+    public function __construct($config = [])
     {
         $this->config = Collection::make(array_merge($this->config, $config));
-        $this->files = $filesystem ?: new Filesystem;
     }
 
     public function registerBladeTag()
@@ -35,50 +33,10 @@ class Fa5Factory
         });
     }
 
-    public function spritesheets(...$weights)
+    public function spritesheetUrl($weight)
     {
-        $weights = array_flatten($weights);
-
-        if (empty($weights)) {
-            $weights = [$this->config['weight']];
-        }
-
-        return new HtmlString(
-            sprintf(
-                '<div style="height: 0; width: 0; position: absolute; visibility: hidden;">%s</div>',
-                $this->spritesheetsContents($weights)
-            )
-        );
-    }
-
-    private function spritesheetsContents($weights)
-    {
-        $contents = '';
-        foreach ($weights as $weight) {
-            $contents .= $this->spritesheetContent($weight);
-        }
-
-        return $contents;
-    }
-
-    private function spritesheetContent($weight)
-    {
-        return cache()->rememberForever("fa5-{$weight}-spritesheet", function () use ($weight) {
-            $dom = new \DomDocument;
-            $dom->loadXML(file_get_contents($this->spritesheetPath($weight)));
-
-            foreach ($dom->getElementsByTagName('symbol') as $symbol) {
-                $symbol->setAttribute('id', $weight . '-' . $symbol->getAttribute('id'));
-            }
-
-            return $dom->saveHTML();
-        });
-    }
-
-    public function spritesheetPath($weight)
-    {
-        return str_finish($this->config->get('spritesheets_path', function () {
-            throw new Exception('No spritesheets_path set!');
+        return url($this->config->get('spritesheets_url', function () {
+            throw new Exception('No spritesheets_url set!');
         }), '/') . $this->spritesheetName($weight);
     }
 

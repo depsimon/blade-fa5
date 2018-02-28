@@ -19,19 +19,17 @@ Publish the Blade Font Awesome 5 config file:
 php artisan vendor:publish --provider="Depsimon\BladeFa5\BladeFa5ServiceProvider"
 ```
 
-Go to https://fontawesome.com/ and download the latest version (Free or Pro). Unzip the package and go to `fontawesome-free-5.0.7/advanced-options/svg-sprites`.
-
-Copy all the files from there to you `resources/assets/svg` directory.
+Download the [Font Awesome 5](https://fontawesome.com/) latest version (Free or Pro) and put the SVG sprites in your `public/svg` directory.
 
 ## Configuration
 
-Inside `config/blade-fa5.php`, you can specify the spritesheets path, the default weight and the default classes for icons.
+Inside `config/blade-fa5.php`, you can specify the spritesheets directory, the default weight and the default classes for icons.
 
 ```php
 <?php
 
 return [
-    'spritesheets_path' => 'resources/assets/svg/',
+    'spritesheets_url' => 'svg/',
     'weight' => 'far',
     'class' => 'icon inline-block fill-current',
 ];
@@ -39,29 +37,14 @@ return [
 
 ## Basic usage
 
-First, make sure to include the spritesheets that you'll use in your template with the `fa5_spritesheets()` helper:
-
-```html
-<!-- layout.blade.php -->
-
-<!DOCTYPE html>
-<html lang="en">
-    <head><!-- ... --></head>
-    <body>
-        <!-- ... -->
-
-        {{ fa5_spritesheets('far', 'fas', 'fab') }}
-    </body>
-</html>
-```
-
-To insert a Font Awesome icon in your template, simply use the `@fa5` Blade directive, passing the name of the icon and optionally the weight and then any additional classes:
+You can insert an icon anywhere in your template with the `@fa5` Blade directive.
+You pass the name, then the weight, the classes and any additional classes:
 
 ```html
 @fa5('cog')
-@fa5('facebook', 'fab')
-@fa5('facebook', 'fab', 'text-blue')
-@fa5('spinner', 'fal', 'text-grey', ['spin'])
+@fa5('user', 'fas') <!-- Weight is "solid" -->
+@fa5('facebook', 'fab', 'text-blue') <!-- Weight is "brands" and apply "text-blue" class -->
+@fa5('spinner', 'fal', 'text-grey', ['spin']) <!-- Add the "spin" attribute -->
 ```
 
 ## Credits

@@ -2,16 +2,15 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Spritesheets Path
+    | Spritesheets Directory URI
     |--------------------------------------------------------------------------
     |
     | This value is the path to the directory of the Font Awesome 5
-    | spritesheets. This path is then resolved internally. Please
-    | ensure this value is set relative to the root directory
-    | and not the public directory.
+    | spritesheets. This path is then resolved as a URI. Please
+    | ensure this value is set relative to the public directory.
     |
     */
-    'spritesheets_path' => 'resources/assets/svg/',
+    'spritesheets_url' => 'svg/',
 
     /*
     |--------------------------------------------------------------------------
